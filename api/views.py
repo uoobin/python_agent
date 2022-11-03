@@ -24,7 +24,8 @@ class FilterDataViewSet(viewsets.ReadOnlyModelViewSet):
         data = request.data
         serializer = FilterDataSerializer(data=request.data)
         if serializer.is_valid():
-            # serializer.save()
+            serializer.save()
+            
             f = os.path.join(os.path.join(os.path.dirname(__file__),'../'), 'transaction_data.csv')
             df = pd.read_csv(f)
             df = df[df['timestamp'] == float(data['timestamp'])]
